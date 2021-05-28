@@ -4,6 +4,7 @@ namespace Codememory\Components\Console\Traits;
 
 use Exception;
 use Symfony\Component\Console\Output\BufferedOutput;
+use Codememory\Components\Console\Running;
 
 /**
  * Trait ExecutionTrait
@@ -22,10 +23,10 @@ trait ExecutionTrait
      *
      * @param BufferedOutput $output
      *
-     * @return ExecutionTrait
+     * @return Running|ExecutionTrait
      * @throws Exception
      */
-    private function asyncExecution(BufferedOutput $output): ExecutionTrait
+    private function asyncExecution(BufferedOutput $output): Running|ExecutionTrait
     {
 
         if (self::ASYNC_EXECUTION === $this->execution['type']) {
@@ -47,10 +48,10 @@ trait ExecutionTrait
      *
      * @param BufferedOutput $output
      *
-     * @return ExecutionTrait
+     * @return Running|ExecutionTrait
      * @throws Exception
      */
-    private function firstExecution(BufferedOutput $output): ExecutionTrait
+    private function firstExecution(BufferedOutput $output): Running|ExecutionTrait
     {
 
         if (self::FIRST_EXECUTION === $this->execution['type']) {
@@ -68,10 +69,10 @@ trait ExecutionTrait
      *
      * @param BufferedOutput $output
      *
-     * @return ExecutionTrait
+     * @return Running|ExecutionTrait
      * @throws Exception
      */
-    private function lastExecution(BufferedOutput $output): ExecutionTrait
+    private function lastExecution(BufferedOutput $output): Running|ExecutionTrait
     {
 
         if (self::LAST_EXECUTION === $this->execution['type']) {
@@ -89,10 +90,10 @@ trait ExecutionTrait
      *
      * @param BufferedOutput $output
      *
-     * @return ExecutionTrait
+     * @return Running|ExecutionTrait
      * @throws Exception
      */
-    private function specificExecution(BufferedOutput $output): ExecutionTrait
+    private function specificExecution(BufferedOutput $output): Running|ExecutionTrait
     {
 
         if (self::SPECIFIC_EXECUTION === $this->execution['type']) {
@@ -111,10 +112,10 @@ trait ExecutionTrait
      * @param BufferedOutput $output
      * @param int            $index
      *
-     * @return ExecutionTrait
+     * @return Running|ExecutionTrait
      * @throws Exception
      */
-    private function handlerExecutionByIndex(BufferedOutput $output, int $index): ExecutionTrait
+    private function handlerExecutionByIndex(BufferedOutput $output, int $index): Running|ExecutionTrait
     {
 
         $input = $this->getInputs()[$index];

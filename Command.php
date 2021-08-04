@@ -5,10 +5,10 @@ namespace Codememory\Components\Console;
 use Symfony\Component\Console\Command\Command as SymfonyCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Style\SymfonyStyle;
 
 /**
  * Class Command
+ *
  * @package System\Console
  *
  * @author  Codememory
@@ -32,9 +32,9 @@ abstract class Command extends SymfonyCommand
     protected ?string $help = null;
 
     /**
-     * @var SymfonyStyle|null
+     * @var IO|null
      */
-    protected ?SymfonyStyle $io = null;
+    protected ?IO $io = null;
 
     /**
      * @var array
@@ -221,11 +221,12 @@ abstract class Command extends SymfonyCommand
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
 
-        $this->io = new SymfonyStyle($input, $output);
         $this->input = $input;
         $this->output = $output;
 
-        return $this->handler($input, $output);
+        $this->io = new IO($this->input, $this->output, $this);
+
+        return $this->handler($this->input, $this->output);
 
     }
 
